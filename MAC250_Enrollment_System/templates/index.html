@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head><title>Student Enrollment</title></head>
+<body>
+    <h1>Student Enrollment System</h1>
+    
+    <h2>Add Students</h2>
+    <form action="/add_student" method="POST"
+         <input name="first_name" placeholder="First Name" required>
+         <input name="last_name" placeholder="Last Name" required>
+         <input name="email" placeholder="Email" required>
+         <button type="submit">Add Student</button>
+    </form>
+    
+    <h2>Add Course</h2>
+    <form action="/add course" method="POST"
+        <input name="course_code" placeholder="Course Code" required>
+        <input name="course_name" placeholder="Course Name" required>
+        <button type="submit">Add Course</button>
+    </form>
+
+    <h2>Enroll Student</h2>
+    <form action="/enroll" method="POST">
+        <select name="student_id" required>
+            {% for s in students %}
+            <option value="{{ s.students_id }}">{{ s.first_name }} {{ s.last_name }}</option>
+            {% endfor %}
+        </select>
+        <select name="course_id" required>
+            {% for c in courses %}
+            <option value="{{ c.course_id }}">{{ c.course_code }} - {{ c.course_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Enroll</button>
+     </form>
+    
+    <h2>Show All Students</h2>
+    <ul>
+         {% for s in students %}
+         <li>{{ s.students_id }}: {{ s.first_name }} {{ s.last_name }} ({{ s.email }}),</li>
+         {% endfor %}
+         </ul>
+
+         <h2>Show All Courses</h2>
+         <ul>
+            {% for c in courses %}
+            <li>{{ c.course_id }}: {{ c.course_code }} - {{ c.course_name }}</li>
+            {% endfor %}
+        </ul> 
+          
+        <h2>Show All Enrollments</h2>
+        <ul>
+            {% for e in enrollments %}
+            <li>Enrollment #{{ e[0] }}: {{ e[1] }} {{ e[2] }} enrolled in {{ e[3] }} ({{ e[4] }}) </li>
+            {% endfor %}
+        </ul>
+    </body>
+    </html>       
